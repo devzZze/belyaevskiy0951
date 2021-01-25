@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col-1">Название</th>
+      <th scope="col-1">Кол-во</th>
+      <th scope="col-1" >Статус</th>
+      <th class="text-right" scope="col">
+        <button class="btn btn-outline-primary btn-sm rounded" (click)="onAddBuy()">
+          Добавить
+        </button>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let buy of buys" [ngClass]="getClass(buy)">
+      <td>{{ buy.name }}</td>
+      <td>{{ buy.count }}</td>
+      <td class="text-right">
+        <select id="status" class="custom-select" (change)="onChangeStatus(buy.id) ">
+          <option [ngValue]="BuyStatus.bought" [selected]="buy.status == 0">Куплено</option>
+          <option [ngValue]="BuyStatus.not_bought" [selected]="buy.status  == 1">Не куплено</option>
+        </select>
+      </td>
+      <td class="text-right">
+        <button class="btn btn-sm btn-primary" (click)="onLinkBuy(buy.id)">
+          Редактировать
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
